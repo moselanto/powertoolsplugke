@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Power Tools",
+    "description": "Cordless and corded drills, grinders, saws and drivers from Makita, Bosch, DeWalt, Ingco and Total."
+  },
+  {
+    "name": "Generators",
+    "description": "Petrol, diesel and inverter generators for home, site and industrial backup power in Kenya."
+  },
+  {
+    "name": "Air Compressors",
+    "description": "Direct-drive and oil-free silent air compressors for workshops and tyre service."
+  },
+  {
+    "name": "Hand Tools",
+    "description": "Professional hand tools, wrenches, pliers and complete tool sets."
+  },
+  {
+    "name": "Safety Equipment",
+    "description": "PPE, helmets, gloves, goggles and hi-vis workwear for construction sites."
+  },
+  {
+    "name": "Industrial Equipment",
+    "description": "Welding machines, weighing scales and heavy-duty industrial gear."
+  },
+  {
+    "name": "Water Pumps",
+    "description": "Petrol and electric water pumps for irrigation and construction."
+  },
+  {
+    "name": "Accessories",
+    "description": "Blades, bits, discs, batteries and consumables."
+  }
+]

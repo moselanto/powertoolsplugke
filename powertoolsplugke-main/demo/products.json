@@ -1,0 +1,62 @@
+[
+  {
+    "key": "makita-hp1640",
+    "name": "Makita HP1640 Percussion Drill 680W (13mm)",
+    "sku": "MK-HP1640",
+    "price": "9500",
+    "brand": "Makita",
+    "category": "Power Tools",
+    "short": "680W corded percussion drill, 13mm chuck, ideal for masonry and steel.",
+    "description": "Genuine Makita HP1640 percussion drill. 680W motor, 13mm keyed chuck, 0-3200 rpm. 1-year warranty. Sold by Power Tools Plug Kenya with nationwide delivery."
+  },
+  {
+    "key": "ingco-cordless-12v",
+    "name": "Ingco Cordless Drill 12V 20Nm (2 Batteries)",
+    "sku": "IN-CD1220",
+    "price": "6000",
+    "brand": "Ingco",
+    "category": "Power Tools",
+    "short": "12V lithium cordless drill/driver with two batteries and case.",
+    "description": "Ingco 12V cordless drill, 20Nm torque, 2-speed, includes two 12V lithium batteries, charger and carry case. 1-year warranty."
+  },
+  {
+    "key": "premier-pm2000is",
+    "name": "Premier PM2000IS 2kVA Inverter Silent Generator",
+    "sku": "PR-PM2000IS",
+    "price": "78000",
+    "brand": "Premier",
+    "category": "Generators",
+    "short": "4-stroke 2kVA inverter silent generator, clean power for electronics.",
+    "description": "Premier PM2000IS inverter generator, 2kVA, 4-stroke petrol, silent-type, stable sine-wave output safe for laptops and tools. 1-year warranty."
+  },
+  {
+    "key": "aircomp-25l",
+    "name": "Oil-Free Silent 25L Direct-Driven Air Compressor",
+    "sku": "AC-25L",
+    "price": "22000",
+    "brand": "Maxmech",
+    "category": "Air Compressors",
+    "short": "Oil-free, low-noise 25L compressor for workshops and tyre service.",
+    "description": "25-litre oil-free silent air compressor, direct drive, 1500W, ideal for tyre inflation, spraying and pneumatic tools."
+  },
+  {
+    "key": "honda-wp2",
+    "name": "Honda 2\" Petrol Water Pump",
+    "sku": "HD-WP2",
+    "price": "34000",
+    "brand": "Honda",
+    "category": "Water Pumps",
+    "short": "Genuine Honda 2-inch petrol water pump for irrigation.",
+    "description": "Honda 2-inch petrol water pump, reliable 4-stroke engine, high flow rate for irrigation and drainage. Genuine unit with warranty."
+  },
+  {
+    "key": "maxmech-ag950",
+    "name": "Maxmech Angle Grinder AG 950-115L 4.5\"",
+    "sku": "MX-AG950",
+    "price": "3500",
+    "brand": "Maxmech",
+    "category": "Power Tools",
+    "short": "950W 4.5-inch angle grinder for cutting and grinding.",
+    "description": "Maxmech AG 950-115L angle grinder, 950W, 4.5-inch disc, side handle included. For metal and masonry cutting and grinding."
+  }
+]

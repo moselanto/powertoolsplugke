@@ -1,0 +1,11 @@
+.pp-wizard{max-width:760px;margin:40px auto;background:#fff;border:1px solid #E4E8EC;border-radius:16px;overflow:hidden;font-family:Inter,system-ui,sans-serif}
+.pp-wizard__head{padding:28px 32px;border-bottom:1px solid #E4E8EC}
+.pp-wizard__head h1{margin:0 0 16px;font-size:1.5rem}
+.pp-wizard__steps{list-style:none;display:flex;gap:8px;margin:0;padding:0;flex-wrap:wrap}
+.pp-wizard__steps li{font-size:.8rem;color:#5A636C;padding:6px 12px;border-radius:999px;background:#F4F6F8}
+.pp-wizard__steps li.is-active{background:#F5A302;color:#111418;font-weight:600}
+.pp-wizard__panel{padding:32px}
+.pp-plugin-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:8px}
+.pp-plugin-list li{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid #E4E8EC;border-radius:10px}
+.pp-plugin-list .req{color:#D33A2C;font-weight:600;font-size:.75rem}
+.pp-plugin-list .done{color:#1B9E59;font-weight:600}
