@@ -1,0 +1,71 @@
+/*
+Theme Name: PowerPlug Pro Child
+Theme URI: https://powertoolsplug.co.ke/
+Template: powerplug
+Author: Power Tools Plug Kenya
+Author URI: https://powertoolsplug.co.ke/
+Description: Starter child theme for PowerPlug Pro. Put ALL customizations here so parent-theme updates never overwrite your work.
+Version: 1.0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: powerplug-child
+*/
+
+/* =====================================================================
+   Product page layout fix
+   ---------------------------------------------------------------------
+   WooCommerce's stock stylesheet floats the summary to the right and
+   pins BOTH columns to width:48%. That stylesheet loads after the theme,
+   so on the single product page the gallery gets squeezed small on the
+   left with a large empty gap. These rules force a clean, responsive
+   two-column grid (gallery left, summary right) and neutralise the stock
+   float/width. Child CSS loads last, so this wins without editing the
+   parent theme.
+   ===================================================================== */
+.single-product div.product {
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+	gap: 40px;
+	align-items: start;
+}
+
+/* Kill the stock float + fixed 48% width on both columns */
+.single-product div.product .woocommerce-product-gallery,
+.single-product div.product div.summary,
+.single-product div.product .entry-summary {
+	float: none !important;
+	width: auto !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	clear: none !important;
+}
+
+/* Gallery fills its column; image scales to fit */
+.single-product div.product .woocommerce-product-gallery {
+	width: 100% !important;
+	min-width: 0;
+}
+.single-product div.product .woocommerce-product-gallery__wrapper {
+	width: 100%;
+	margin: 0;
+}
+.single-product div.product .woocommerce-product-gallery__image img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Description tabs, related products and up-sells span the full width below */
+.single-product div.product .woocommerce-tabs,
+.single-product div.product .related.products,
+.single-product div.product .up-sells {
+	grid-column: 1 / -1;
+}
+
+/* Stack into a single column on tablets and phones */
+@media (max-width: 860px) {
+	.single-product div.product {
+		grid-template-columns: 1fr;
+		gap: 22px;
+	}
+}
