@@ -24,8 +24,28 @@ final class LandingPage implements Bootable {
 
 	private const TEMPLATE = 'template-lp-category.php';
 
+	/** URL prefix used by every funnel, e.g. /lp-water-pumps/. */
+	private const PREFIX = 'lp-';
+
+	/** Category slug for a funnel URL that has no published page (virtual funnel). */
+	private static string $virtual_slug = '';
+
+	/** The part after "lp-" in the current funnel URL (used for hero images). */
+	private static string $funnel_key = '';
+
+	/** Whether the current request was already inspected. */
+	private static bool $routed = false;
+
 	public function boot(): void {
 		add_action( 'wp_enqueue_scripts', [ $this, 'assets' ], 30 );
+		// Funnel routing: /lp-{category}/ always renders the landing template, even when
+		// the page is missing, still a draft, or was saved without the Ads template.
+		add_filter( 'request', [ $this, 'route_request' ], 1 );
+		add_filter( 'pre_handle_404', [ $this, 'pre_handle_404' ], 10, 2 );
+		add_action( 'wp', [ $this, 'debug' ], 0 );
+		add_filter( 'template_include', [ $this, 'template_include' ], 99 );
+		add_filter( 'pre_get_document_title', [ $this, 'document_title' ], 20 );
+		add_filter( 'body_class', [ $this, 'body_class' ] );
 		add_action( 'add_meta_boxes', [ $this, 'add_box' ] );
 		add_action( 'save_post_page', [ $this, 'save_box' ], 10, 2 );
 	}
@@ -34,7 +54,7 @@ final class LandingPage implements Bootable {
 	 * Enqueue the landing assets only on pages using this template.
 	 */
 	public function assets(): void {
-		if ( ! is_page_template( self::TEMPLATE ) ) {
+		if ( ! is_page_template( self::TEMPLATE ) && ! self::is_funnel() ) {
 			return;
 		}
 		$ver = POWERPLUG_VERSION;
@@ -148,7 +168,8 @@ final class LandingPage implements Bootable {
 	/* ------------------------------------------------------------------ */
 
 	public static function render(): void {
-		$post_id = (int) get_the_ID();
+		// Only a real lp- page carries settings; virtual funnels run a product query.
+		$post_id = is_page() ? (int) get_queried_object_id() : 0;
 		$cfg     = self::config( $post_id );
 
 		$wa = preg_replace( '/\D+/', '', Customizer::val( 'pp_whatsapp' ) );
@@ -187,8 +208,11 @@ final class LandingPage implements Bootable {
 	 */
 	private static function config( int $post_id ): array {
 		$slug = (string) get_post_meta( $post_id, '_pp_lp_category', true );
-		if ( '' === $slug ) {
+		if ( '' === $slug && $post_id > 0 ) {
 			$slug = self::slug_from_page( $post_id );
+		}
+		if ( '' === $slug && '' !== self::$virtual_slug ) {
+			$slug = self::$virtual_slug;
 		}
 		if ( '' === $slug ) {
 			$slug = trim( (string) Customizer::val( 'pp_priority_cat' ) );
@@ -730,6 +754,47 @@ final class LandingPage implements Bootable {
 			return true;
 		}
 		return is_page() && 0 === strpos( (string) get_post_field( 'post_name', (int) get_queried_object_id() ), self::PREFIX );
+	}
+
+	/**
+	 * Turn a virtual funnel URL into a product-category query before WordPress
+	 * looks for a page/post with that slug, so it is never flagged as a 404.
+	 *
+	 * @param array<string,mixed> $vars Parsed query vars.
+	 * @return array<string,mixed>
+	 */
+	public function route_request( $vars ) {
+		self::route();
+		if ( '' === self::$virtual_slug || ! taxonomy_exists( 'product_cat' ) ) {
+			return $vars;
+		}
+		$term = get_term_by( 'slug', self::$virtual_slug, 'product_cat' );
+		if ( ! $term || is_wp_error( $term ) ) {
+			return $vars;
+		}
+		return array( 'product_cat' => self::$virtual_slug );
+	}
+
+	/**
+	 * Plain-text diagnostics for a funnel URL: /lp-{slug}/?pp_lp_debug=1
+	 * Shows only public routing facts (theme version, slug, matched category).
+	 */
+	public function debug(): void {
+		if ( ! isset( $_GET['pp_lp_debug'] ) || '' === self::request_key() ) { // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		self::route();
+		$page = get_page_by_path( self::PREFIX . self::$funnel_key );
+		nocache_headers();
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		echo 'powerplug_version: ' . esc_html( POWERPLUG_VERSION ) . "\n";
+		echo 'funnel_key: ' . esc_html( self::$funnel_key ) . "\n";
+		echo 'page_found: ' . esc_html( $page instanceof \WP_Post ? $page->post_type . ' #' . $page->ID . ' (' . $page->post_status . ')' : 'none' ) . "\n";
+		echo 'resolved_category: ' . esc_html( self::resolve_category( self::$funnel_key ) ) . "\n";
+		echo 'virtual_slug: ' . esc_html( self::$virtual_slug ) . "\n";
+		echo 'is_404: ' . ( is_404() ? 'yes' : 'no' ) . "\n";
+		echo 'is_funnel: ' . ( self::is_funnel() ? 'yes' : 'no' ) . "\n";
+		exit;
 	}
 
 	/**

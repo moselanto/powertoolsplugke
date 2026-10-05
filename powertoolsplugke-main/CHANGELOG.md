@@ -1,3 +1,7 @@
+## 2.23.1
+- Fix: 2.23.0 shipped without the funnel routing hooks registered (and without the PREFIX constant/properties the new code relies on), so /lp-{category}/ URLs still returned "Nothing found." — and a published lp- page on the Ads template could hit a fatal error. All hooks are now registered.
+- Funnel URLs with no published page are now rewritten at the `request` stage into a product-category query, so WordPress never flags them as 404 (the 404 handler remains as a fallback).
+- Diagnostics: open any funnel with `?pp_lp_debug=1` (e.g. /lp-water-pumps/?pp_lp_debug=1) to see the running theme version, matched page, resolved category and whether the funnel route fired.
 ## 2.23.0
 - Fixed landing page funnels showing "Nothing found." (404). Every /lp-{category}/ URL now renders the "Landing Page — Category (Ads)" funnel automatically, even when the WordPress page is missing, still a draft, or was saved without the Ads template. No rewrite rules or permalink flush needed.
 - Funnel URLs are matched to the right product category by exact slug, aliases (e.g. lp-grinders -> angle-grinders), singular/plural, then category name. Extend with the `powerplug_funnel_aliases` filter.
