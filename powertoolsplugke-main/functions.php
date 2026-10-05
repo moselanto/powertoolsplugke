@@ -25,7 +25,7 @@ if ( version_compare( PHP_VERSION, '8.0', '<' ) ) {
 	return;
 }
 
-define( 'POWERPLUG_VERSION', '2.23.1' );
+define( 'POWERPLUG_VERSION', '2.23.2' );
 define( 'POWERPLUG_DIR', trailingslashit( get_template_directory() ) );
 define( 'POWERPLUG_URI', trailingslashit( get_template_directory_uri() ) );
 

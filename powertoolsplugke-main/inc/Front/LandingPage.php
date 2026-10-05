@@ -36,6 +36,9 @@ final class LandingPage implements Bootable {
 	/** Whether the current request was already inspected. */
 	private static bool $routed = false;
 
+	/** Existing landing page (any slug) whose saved settings apply to a virtual funnel. */
+	private static int $settings_page_id = 0;
+
 	public function boot(): void {
 		add_action( 'wp_enqueue_scripts', [ $this, 'assets' ], 30 );
 		// Funnel routing: /lp-{category}/ always renders the landing template, even when
@@ -169,7 +172,8 @@ final class LandingPage implements Bootable {
 
 	public static function render(): void {
 		// Only a real lp- page carries settings; virtual funnels run a product query.
-		$post_id = is_page() ? (int) get_queried_object_id() : 0;
+		self::route();
+		$post_id = is_page() ? (int) get_queried_object_id() : self::$settings_page_id;
 		$cfg     = self::config( $post_id );
 
 		$wa = preg_replace( '/\D+/', '', Customizer::val( 'pp_whatsapp' ) );
@@ -745,6 +749,64 @@ final class LandingPage implements Bootable {
 		if ( '' !== $cat || file_exists( get_template_directory() . '/assets/img/lp-' . $key . '-hero.jpg' ) ) {
 			self::$virtual_slug = '' !== $cat ? $cat : $key;
 		}
+		if ( '' !== self::$virtual_slug ) {
+			self::$settings_page_id = self::find_settings_page( $key, self::$virtual_slug );
+		}
+	}
+
+	/**
+	 * Find an existing landing page whose saved settings (advertised product IDs,
+	 * From price, hero text/image...) should power this funnel even though its slug
+	 * differs from the URL, e.g. "lp-incubators-2", "incubators-offer", or a draft.
+	 * Matches pages on the Ads template by slug prefix, then by the saved category.
+	 * Published pages win over drafts/private; trash is ignored.
+	 */
+	private static function find_settings_page( string $key, string $cat ): int {
+		$ids = get_posts(
+			array(
+				'post_type'        => 'page',
+				'post_status'      => array( 'publish', 'private', 'draft', 'pending', 'future' ),
+				'posts_per_page'   => 50,
+				'fields'           => 'ids',
+				'no_found_rows'    => true,
+				'suppress_filters' => true,
+				'orderby'          => 'modified',
+				'order'            => 'DESC',
+				'meta_query'       => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+					array( 'key' => '_wp_page_template', 'value' => self::TEMPLATE ),
+				),
+			)
+		);
+		if ( ! is_array( $ids ) || array() === $ids ) {
+			return 0;
+		}
+		$best      = 0;
+		$best_rank = 99;
+		foreach ( $ids as $id ) {
+			$id     = (int) $id;
+			$name   = (string) get_post_field( 'post_name', $id );
+			$status = (string) get_post_status( $id );
+			$saved  = (string) get_post_meta( $id, '_pp_lp_category', true );
+			$rank   = 99;
+			if ( 0 === strpos( $name, self::PREFIX . $key ) || 0 === strpos( $name, $key ) ) {
+				$rank = 1;
+			} elseif ( '' !== $saved && $saved === $cat ) {
+				$rank = 2;
+			} elseif ( '' === $saved && self::slug_from_page( $id ) === $cat ) {
+				$rank = 3;
+			}
+			if ( 99 === $rank ) {
+				continue;
+			}
+			if ( 'publish' !== $status ) {
+				$rank += 10;
+			}
+			if ( $rank < $best_rank ) {
+				$best      = $id;
+				$best_rank = $rank;
+			}
+		}
+		return $best;
 	}
 
 	/** True when the current request is a funnel (real lp- page or virtual). */
@@ -792,6 +854,7 @@ final class LandingPage implements Bootable {
 		echo 'page_found: ' . esc_html( $page instanceof \WP_Post ? $page->post_type . ' #' . $page->ID . ' (' . $page->post_status . ')' : 'none' ) . "\n";
 		echo 'resolved_category: ' . esc_html( self::resolve_category( self::$funnel_key ) ) . "\n";
 		echo 'virtual_slug: ' . esc_html( self::$virtual_slug ) . "\n";
+		echo 'settings_page: ' . esc_html( self::$settings_page_id > 0 ? '#' . self::$settings_page_id . ' ' . get_post_field( 'post_name', self::$settings_page_id ) . ' (' . get_post_status( self::$settings_page_id ) . ') product_ids=' . get_post_meta( self::$settings_page_id, '_pp_lp_product_ids', true ) : 'none' ) . "\n";
 		echo 'is_404: ' . ( is_404() ? 'yes' : 'no' ) . "\n";
 		echo 'is_funnel: ' . ( self::is_funnel() ? 'yes' : 'no' ) . "\n";
 		exit;

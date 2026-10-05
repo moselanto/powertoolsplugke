@@ -157,9 +157,11 @@
 @media(max-width:860px){.pp-lp-buybar{display:flex}body[class*="template-lp-category"]{padding-bottom:92px}}
 
 /* reveal animation */
-.pp-lp-reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.pp-lp-reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.pp-lp-reveal{opacity:1;transform:none;transition:none}}
+/* Cards are only hidden for the scroll-in effect once landing.js has loaded (adds html.pp-lp-js),
+   so products stay visible if the script is missing, blocked or deferred by a cache plugin. */
+.pp-lp-js .pp-lp-reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.pp-lp-js .pp-lp-reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.pp-lp-js .pp-lp-reveal{opacity:1;transform:none;transition:none}}
 
 /* included / what's-in-the-box image */
 .pp-lp-media{border-radius:var(--pp-lp-radius);overflow:hidden;box-shadow:var(--pp-lp-shadow-lg);line-height:0}

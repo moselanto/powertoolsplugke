@@ -1,3 +1,7 @@
+## 2.23.2
+- Fix: funnel product cards were invisible. The theme enqueues assets/js/landing.js but the file was missing, and landing.css hid every .pp-lp-reveal card (opacity 0) until that script revealed it. Added landing.js (scroll-in reveal, stat count-up, 2.5s safety net) and changed the CSS so cards are only hidden once the script has loaded — products stay visible even if JS is blocked or delayed by a cache plugin.
+- Virtual funnels now pick up the settings (Advertised product IDs, From price, hero text/image) from an existing landing page that uses the Ads template even when its slug differs from the URL (e.g. lp-incubators-2) or it is still a draft. Published pages win over drafts.
+- ?pp_lp_debug=1 now also shows which settings page (and product IDs) a funnel is using.
 ## 2.23.1
 - Fix: 2.23.0 shipped without the funnel routing hooks registered (and without the PREFIX constant/properties the new code relies on), so /lp-{category}/ URLs still returned "Nothing found." — and a published lp- page on the Ads template could hit a fatal error. All hooks are now registered.
 - Funnel URLs with no published page are now rewritten at the `request` stage into a product-category query, so WordPress never flags them as 404 (the 404 handler remains as a fallback).
