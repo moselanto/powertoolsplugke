@@ -1,0 +1,676 @@
+# Copyright (C) 2026 Power Tools Plug Kenya
+# This file is distributed under the GNU GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: PowerPlug Pro 2.10.0\n"
+"Report-Msgid-Bugs-To: https://powertoolsplugke.co.ke/\n"
+"POT-Creation-Date: 2026-07-09 15:51+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-Team: Power Tools Plug Kenya\n"
+"X-Domain: powerplug\n"
+
+#: footer.php header.php
+msgid "About Us"
+msgstr ""
+
+#: header.php
+msgid "Account"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Activate"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Activating"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Add to Cart"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Add to cart"
+msgstr ""
+
+#: footer.php
+msgid "All Categories"
+msgstr ""
+
+#: header.php
+msgid "All Products"
+msgstr ""
+
+#: footer.php
+msgid "All rights reserved. All prices in Kenyan Shillings (KES)."
+msgstr ""
+
+#: footer.php
+msgid "Back to top"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Best selling"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Branding & Colors"
+msgstr ""
+
+#: footer.php
+msgid "CCTV and Security"
+msgstr ""
+
+#: header.php
+msgid "Cart"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Categories"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Categories in left menu"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Category menu heading"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Category product sections to show"
+msgstr ""
+
+#: footer.php inc/Front/Home.php
+msgid "Chat on WhatsApp"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Clear all filters"
+msgstr ""
+
+#: header.php
+msgid "Close cart"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Close filters"
+msgstr ""
+
+#: header.php
+msgid "Close menu"
+msgstr ""
+
+#: header.php
+msgid "Contact"
+msgstr ""
+
+#: footer.php
+msgid "Contact Us"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Continue"
+msgstr ""
+
+#: footer.php
+msgid "Customer Care"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Demo Content"
+msgstr ""
+
+#: functions.php
+msgid "Dismiss"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Email to subscribe"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Featured"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Featured categories heading"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Filter products"
+msgstr ""
+
+#: woocommerce.php
+msgid "Filters"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Finish"
+msgstr ""
+
+#: inc/Setup/Setup_Wizard.php
+msgid "Finish setup: install the required plugins and import demo content."
+msgstr ""
+
+#: inc/Setup/Supports.php
+msgid "Footer Menu"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Frequently asked questions"
+msgstr ""
+
+#: footer.php
+msgid "Generators"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Genuine & warranty-backed"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Genuine Power Tools & Industrial Equipment in Kenya"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Genuine, warranty-backed equipment. Nationwide delivery and M-Pesa."
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Get deals & new arrivals"
+msgstr ""
+
+#: footer.php
+msgid "Get in Touch"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Go"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Go to Dashboard"
+msgstr ""
+
+#: footer.php
+msgid "Grinders"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Header & Contact"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Headings & text color"
+msgstr ""
+
+#: inc/Setup/Supports.php
+msgid "Hero Categories"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Hero Slider & Categories"
+msgstr ""
+
+#: inc/Seo/Schema.php
+msgid "Home"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Homepage Sections"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Import Demo"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Import Demo Content"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Imports categories, sample products, pages (About, Contact, Policies, FAQs) and the primary menu. Safe to re-run."
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Install &amp; Activate All"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Install Required Plugins"
+msgstr ""
+
+#: inc/Setup/Plugin_Installer.php inc/Setup/Setup_Wizard.php
+msgid "Insufficient permissions."
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Join our list for offers on Makita, Bosch, Ingco and Total tools."
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Latest first"
+msgstr ""
+
+#: inc/Setup/Setup_Wizard.php
+msgid "Launch Setup Wizard"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Let’s go"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Load more products"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "M-Pesa & Pay on delivery"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Makita, Bosch, DeWalt, Ingco & Total — warranty-backed, dispatched same day in Nairobi."
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Max"
+msgstr ""
+
+#: inc/Setup/Supports.php
+msgid "Mega Menu"
+msgstr ""
+
+#: header.php
+msgid "Menu"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Message us on WhatsApp"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Min"
+msgstr ""
+
+#: inc/Setup/Plugin_Installer.php
+msgid "Missing plugin slug."
+msgstr ""
+
+#: inc/Setup/Supports.php
+msgid "Mobile Bottom Navigation"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Nairobi · Nationwide delivery · M-Pesa"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Nationwide delivery"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Next slide"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Next: verify your business details, review Merchant Compliance, and connect payments (M-Pesa, cards)."
+msgstr ""
+
+#: index.php
+msgid "Nothing found."
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Number of featured category cards"
+msgstr ""
+
+#: inc/Admin/Dashboard.php
+msgid "Open Merchant Compliance Inspector"
+msgstr ""
+
+#: header.php
+msgid "Open cart"
+msgstr ""
+
+#: functions.php
+msgid "Open product importer"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Or assign a Hero Categories menu under Appearance > Menus for full control of the list and order."
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Order before 2:00 PM for same-day dispatch in Nairobi. Countrywide delivery in 1–3 business days."
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Out of stock"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Phone number"
+msgstr ""
+
+#: inc/Setup/Plugin_Installer.php
+msgid "Plugin could not be located after install."
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Plugins"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Power Tools, Solar & Generators"
+msgstr ""
+
+#: inc/Admin/Dashboard.php
+msgid "PowerPlug"
+msgstr ""
+
+#: inc/Admin/Dashboard.php
+msgid "PowerPlug Control Center"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "PowerPlug Pro"
+msgstr ""
+
+#: inc/Setup/Setup_Wizard.php
+msgid "PowerPlug Setup"
+msgstr ""
+
+#: functions.php
+msgid "PowerPlug Slider"
+msgstr ""
+
+#: functions.php
+msgid "PowerPlug requires PHP 8.0 or higher. This server runs PHP %s. In cPanel, open Select PHP Version (or MultiPHP Manager) and switch this site to PHP 8.1 or 8.2, then reload."
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Previous slide"
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Price (KSh)"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Price: low to high"
+msgstr ""
+
+#: header.php
+msgid "Primary"
+msgstr ""
+
+#: inc/Setup/Supports.php
+msgid "Primary Menu"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Primary brand color"
+msgstr ""
+
+#: footer.php
+msgid "Privacy"
+msgstr ""
+
+#: footer.php
+msgid "Privacy Policy"
+msgstr ""
+
+#: woocommerce.php
+msgid "Product filters"
+msgstr ""
+
+#: inc/Woo/QuickView.php
+msgid "Product not found."
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Product order in homepage rows"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Products per category row"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Promotions"
+msgstr ""
+
+#: inc/Woo/QuickView.php
+msgid "Quick view"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Random (changes on refresh)"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Random shows different products on each refresh (recommended)."
+msgstr ""
+
+#: inc/Woo/Filters.php
+msgid "Rating"
+msgstr ""
+
+#: inc/Admin/Dashboard.php
+msgid "Re-run Setup Wizard"
+msgstr ""
+
+#: footer.php
+msgid "Return and Refund Policy"
+msgstr ""
+
+#: footer.php
+msgid "Returns"
+msgstr ""
+
+#: footer.php
+msgid "SSL secured checkout"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Sale"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Scroll left"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Scroll right"
+msgstr ""
+
+#: header.php
+msgid "Search"
+msgstr ""
+
+#: header.php
+msgid "Search products"
+msgstr ""
+
+#: header.php
+msgid "Search products, brands, SKU..."
+msgstr ""
+
+#: footer.php
+msgid "Secure payments"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Setup steps"
+msgstr ""
+
+#: footer.php
+msgid "Shipping"
+msgstr ""
+
+#: footer.php
+msgid "Shipping and Delivery Policy"
+msgstr ""
+
+#: footer.php inc/Seo/Schema.php
+msgid "Shop"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Shop address"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Shop all products"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Shop all tools"
+msgstr ""
+
+#: header.php inc/Front/Home.php
+msgid "Shop by Category"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Shop by brand"
+msgstr ""
+
+#: header.php
+msgid "Shopping cart"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Skip"
+msgstr ""
+
+#: header.php
+msgid "Skip to content"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Slide %d button link"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Slide %d button text"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Slide %d heading"
+msgstr ""
+
+#: functions.php inc/Customizer/Customizer.php
+msgid "Slide %d image"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Slide %d subtitle"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Specifications"
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Specifications available on request."
+msgstr ""
+
+#: inc/Woo/WooCommerce.php
+msgid "Store guarantees"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Support email"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Support hours"
+msgstr ""
+
+#: footer.php
+msgid "Terms"
+msgstr ""
+
+#: footer.php
+msgid "Terms and Conditions"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "This wizard installs the plugins your store needs, activates them, and imports professional demo content tailored for a power-tools retailer. You can re-run it any time from Appearance → PowerPlug Setup."
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "Top bar promo text"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "View all"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "View all categories"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "View more in"
+msgstr ""
+
+#: footer.php
+msgid "Water Pumps"
+msgstr ""
+
+#: footer.php
+msgid "We accept: M-Pesa and Pay on Delivery"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Welcome"
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Welcome to PowerPlug"
+msgstr ""
+
+#: header.php
+msgid "WhatsApp"
+msgstr ""
+
+#: inc/Customizer/Customizer.php
+msgid "WhatsApp number (digits only)"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "Why choose Power Tools Plug"
+msgstr ""
+
+#: header.php
+msgid "Wishlist"
+msgstr ""
+
+#: header.php
+msgid "Your Cart"
+msgstr ""
+
+#: functions.php
+msgid "Your cleaned catalogue (555 products) ships with the theme at wp-content/themes/powerplug/starter/products.csv. Import it with the WooCommerce product importer and choose Update existing products."
+msgstr ""
+
+#: inc/Setup/views/wizard.php
+msgid "Your store is ready"
+msgstr ""
+
+#: footer.php
+msgid "Your trusted power-tools shop in Nairobi. Genuine Makita, Bosch, DeWalt, Ingco, Total and more, for professionals and home projects. Pay by M-Pesa or on delivery."
+msgstr ""
+
+#: inc/Admin/Dashboard.php
+msgid "health"
+msgstr ""
+
+#: inc/Front/Home.php
+msgid "items"
+msgstr ""
