@@ -603,30 +603,208 @@ final class LandingPage implements Bootable {
 	 * Derive a product_cat slug from the page slug, e.g. lp-water-pumps => water-pumps.
 	 */
 	private static function slug_from_page( int $post_id ): string {
-		if ( taxonomy_exists( 'product_cat' ) ) {
-			$name  = (string) get_post_field( 'post_name', $post_id );
-			$cands = array();
-			if ( 0 === strpos( $name, 'lp-' ) ) {
-				$cands[] = substr( $name, 3 );
+		$name = (string) get_post_field( 'post_name', $post_id );
+		if ( 0 === strpos( $name, self::PREFIX ) ) {
+			$found = self::resolve_category( substr( $name, strlen( self::PREFIX ) ) );
+			if ( '' !== $found ) {
+				return $found;
 			}
-			$cands[] = $name;
-			foreach ( $cands as $c ) {
-				$c = trim( (string) $c );
-				if ( '' === $c ) {
-					continue;
-				}
-				$term = get_term_by( 'slug', $c, 'product_cat' );
-				if ( $term && false === is_wp_error( $term ) ) {
-					return (string) $term->slug;
-				}
+		}
+		return self::resolve_category( $name );
+	}
+
+	/* ------------------------------------------------------------------ */
+	/* Funnel routing ( /lp-{category}/ )                                  */
+	/* ------------------------------------------------------------------ */
+
+	/**
+	 * Funnel key -> candidate product_cat slugs. Extend with the
+	 * `powerplug_funnel_aliases` filter in the child theme.
+	 *
+	 * @return array<string, array<int,string>>
+	 */
+	private static function aliases(): array {
+		return (array) apply_filters(
+			'powerplug_funnel_aliases',
+			array(
+				'incubators'          => array( 'incubators', 'egg-incubators', 'incubator' ),
+				'demolition-breakers' => array( 'demolition-breakers', 'demolition-hammers', 'breakers', 'demolition-hammer' ),
+				'vacuum-cleaners'     => array( 'vacuum-cleaners', 'vacuum-cleaner', 'vacuums' ),
+				'pressure-washers'    => array( 'pressure-washers', 'pressure-washer', 'car-wash-equipment' ),
+				'water-pumps'         => array( 'water-pumps', 'water-pump', 'pumps' ),
+				'hardware-tools'      => array( 'hardware-tools', 'hand-tools', 'hardware' ),
+				'weighing-scales'     => array( 'weighing-scales', 'weighing-scale', 'scales' ),
+				'batteries'           => array( 'batteries', 'solar-batteries', 'battery' ),
+				'welding-machines'    => array( 'welding-machines', 'welding-machine', 'welding' ),
+				'solar-panels'        => array( 'solar-panels', 'solar-panel', 'solar' ),
+				'solar-inverters'     => array( 'solar-inverters', 'solar-inverter', 'inverters' ),
+				'grinders'            => array( 'grinders', 'angle-grinders', 'grinder' ),
+			)
+		);
+	}
+
+	/**
+	 * Resolve a funnel key to an existing product_cat slug: exact -> aliases ->
+	 * singular/plural -> category-name match. Returns '' when nothing matches.
+	 */
+	private static function resolve_category( string $key ): string {
+		$key = sanitize_title( $key );
+		if ( '' === $key || ! taxonomy_exists( 'product_cat' ) ) {
+			return '';
+		}
+		$aliases = self::aliases();
+		$cands   = array_merge( array( $key ), $aliases[ $key ] ?? array() );
+		$cands[] = (string) preg_replace( '/s$/', '', $key );
+		$cands[] = $key . 's';
+		foreach ( array_unique( array_filter( $cands ) ) as $c ) {
+			$term = get_term_by( 'slug', $c, 'product_cat' );
+			if ( $term && ! is_wp_error( $term ) ) {
+				return (string) $term->slug;
 			}
+		}
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'product_cat',
+				'hide_empty' => false,
+				'name__like' => (string) preg_replace( '/s$/', '', str_replace( '-', ' ', $key ) ),
+				'number'     => 1,
+				'orderby'    => 'count',
+				'order'      => 'DESC',
+			)
+		);
+		if ( is_array( $terms ) && isset( $terms[0] ) && $terms[0] instanceof \WP_Term ) {
+			return (string) $terms[0]->slug;
 		}
 		return '';
 	}
 
+	/**
+	 * Read "xyz" from a single-segment /lp-xyz/ request path, else ''.
+	 */
+	private static function request_key(): string {
+		$uri  = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$path = (string) wp_parse_url( $uri, PHP_URL_PATH );
+		$home = (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH );
+		if ( '' !== $home && '/' !== $home && 0 === strpos( $path, $home ) ) {
+			$path = substr( $path, strlen( $home ) );
+		}
+		$path = trim( strtolower( $path ), '/' );
+		if ( '' === $path || false !== strpos( $path, '/' ) || 0 !== strpos( $path, self::PREFIX ) ) {
+			return '';
+		}
+		return sanitize_title( substr( $path, strlen( self::PREFIX ) ) );
+	}
+
+	/**
+	 * Inspect the request once. A funnel is either a published lp- page, or an
+	 * lp- URL with no published page whose key resolves to a category or has a
+	 * built-in hero image (virtual funnel).
+	 */
+	private static function route(): void {
+		if ( self::$routed ) {
+			return;
+		}
+		self::$routed = true;
+		if ( is_admin() ) {
+			return;
+		}
+		$key = self::request_key();
+		if ( '' === $key ) {
+			return;
+		}
+		self::$funnel_key = $key;
+		$page = get_page_by_path( self::PREFIX . $key );
+		if ( $page instanceof \WP_Post && 'publish' === $page->post_status ) {
+			return; // Real page: WordPress serves it; template_include forces the Ads template.
+		}
+		$cat = self::resolve_category( $key );
+		if ( '' !== $cat || file_exists( get_template_directory() . '/assets/img/lp-' . $key . '-hero.jpg' ) ) {
+			self::$virtual_slug = '' !== $cat ? $cat : $key;
+		}
+	}
+
+	/** True when the current request is a funnel (real lp- page or virtual). */
+	private static function is_funnel(): bool {
+		self::route();
+		if ( '' !== self::$virtual_slug ) {
+			return true;
+		}
+		return is_page() && 0 === strpos( (string) get_post_field( 'post_name', (int) get_queried_object_id() ), self::PREFIX );
+	}
+
+	/**
+	 * Stop WordPress returning a 404 ("Nothing found.") for a virtual funnel.
+	 *
+	 * @param bool      $preempt  Short-circuit flag.
+	 * @param \WP_Query $wp_query Main query.
+	 */
+	public function pre_handle_404( $preempt, $wp_query ) {
+		if ( $preempt ) {
+			return $preempt;
+		}
+		self::route();
+		if ( '' === self::$virtual_slug ) {
+			return $preempt;
+		}
+		if ( $wp_query instanceof \WP_Query ) {
+			$wp_query->is_404  = false;
+			$wp_query->is_home = false;
+		}
+		status_header( 200 );
+		return true;
+	}
+
+	/**
+	 * Use the Ads landing template for every funnel URL.
+	 *
+	 * @param string $template Resolved template path.
+	 */
+	public function template_include( $template ) {
+		if ( ! self::is_funnel() ) {
+			return $template;
+		}
+		global $wp_query;
+		if ( $wp_query instanceof \WP_Query && $wp_query->is_404 ) {
+			$wp_query->is_404 = false;
+			status_header( 200 );
+		}
+		$file = get_template_directory() . '/' . self::TEMPLATE;
+		return file_exists( $file ) ? $file : $template;
+	}
+
+	/**
+	 * Title for virtual funnels (real pages keep their own / Rank Math title).
+	 *
+	 * @param string $title Title.
+	 */
+	public function document_title( $title ) {
+		self::route();
+		if ( '' === self::$virtual_slug ) {
+			return $title;
+		}
+		$term = get_term_by( 'slug', self::$virtual_slug, 'product_cat' );
+		$name = ( $term && ! is_wp_error( $term ) ) ? $term->name : ucwords( str_replace( '-', ' ', self::$funnel_key ) );
+		return sprintf( __( 'Shop %1$s in Kenya | %2$s', 'powerplug' ), $name, get_bloginfo( 'name' ) );
+	}
+
+	/**
+	 * @param array<int,string> $classes Body classes.
+	 * @return array<int,string>
+	 */
+	public function body_class( $classes ) {
+		if ( self::is_funnel() ) {
+			$classes   = array_values( array_diff( (array) $classes, array( 'error404' ) ) );
+			$classes[] = 'pp-lp-page';
+			$classes[] = 'page-template-template-lp-category';
+		}
+		return $classes;
+	}
+
 	private static function hero_base( string $slug ): string {
-		if ( strlen( $slug ) > 0 && file_exists( get_template_directory() . '/assets/img/lp-' . $slug . '-hero.jpg' ) ) {
-			return $slug;
+		foreach ( array( $slug, self::$funnel_key ) as $base ) {
+			if ( strlen( $base ) > 0 && file_exists( get_template_directory() . '/assets/img/lp-' . $base . '-hero.jpg' ) ) {
+				return $base;
+			}
 		}
 		return '';
 	}

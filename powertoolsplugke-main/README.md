@@ -24,6 +24,11 @@ Enterprise-grade WooCommerce parent theme for industrial / power-tool retailers.
 - `assets/` — compiled `main.css`, `app.js`, wizard CSS/JS (framework-free).
 - `demo/` — importable JSON (categories, products, pages).
 
+## Landing page funnels
+- `inc/Front/LandingPage.php` + `template-lp-category.php` power the ad funnels at `/lp-{category}/`.
+- Since 2.23.0 every `/lp-{slug}/` URL renders the funnel automatically (no page needed); published `lp-` pages are forced onto the Ads template and their settings box still applies. See the repository root README for the full funnel list and troubleshooting.
+- Map a URL to a differently named category with the `powerplug_funnel_aliases` filter.
+
 ## Extending
 Never edit the parent. Use the child theme and these filters:
 - `powerplug_business_details` — override store phone/email/address.

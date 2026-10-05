@@ -1,3 +1,8 @@
+## 2.23.0
+- Fixed landing page funnels showing "Nothing found." (404). Every /lp-{category}/ URL now renders the "Landing Page — Category (Ads)" funnel automatically, even when the WordPress page is missing, still a draft, or was saved without the Ads template. No rewrite rules or permalink flush needed.
+- Funnel URLs are matched to the right product category by exact slug, aliases (e.g. lp-grinders -> angle-grinders), singular/plural, then category name. Extend with the `powerplug_funnel_aliases` filter.
+- Published lp- pages keep working as before, and their Landing Page (Ads) settings box (category, product IDs, hero text/image, From price) still overrides the defaults. Hero images now also resolve from the funnel URL when the category slug differs.
+- Affected funnels: incubators, demolition-breakers, vacuum-cleaners, pressure-washers, water-pumps, hardware-tools, weighing-scales, batteries, welding-machines, solar-panels, solar-inverters, grinders.
 ## 2.20.1
 - Footer now links Warranty Policy, FAQ and Track Order (in addition to About, Returns, Shipping, Terms, Privacy, Contact).
 - New shortcode [pp_faq] renders the store FAQ (with FAQ schema) on any page, so you can publish a dedicated FAQ page.
