@@ -1,0 +1,22 @@
+/*
+Theme Name: PowerPlug Pro
+Theme URI: https://powertoolsplugke.co.ke/
+Author: Power Tools Plug Kenya
+Author URI: https://powertoolsplugke.co.ke/
+Description: PowerPlug Pro is a premium, conversion-focused WooCommerce theme engineered for industrial and power-tool retailers. Core Web Vitals optimized, WCAG 2.1 AA accessible, Google Merchant Center compliant, with a built-in setup wizard, header/footer/mega-menu builders and a global design system. PHP 8.0+, WordPress + WooCommerce latest.
+Version:           2.22.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+WC requires at least: 8.0
+WC tested up to: 9.5
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: powerplug
+Tags: e-commerce, woo-commerce, block-styles, full-site-editing, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, translation-ready, accessibility-ready
+*/
+
+/* PowerPlug ships its compiled design-system CSS from assets/css/main.css.
+   This file exists to satisfy the WordPress theme header and hold minimal
+   critical fallbacks. Do not add customizations here — use the child theme. */
+:root{color-scheme:light dark}

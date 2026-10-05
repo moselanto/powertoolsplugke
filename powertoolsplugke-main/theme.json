@@ -1,0 +1,167 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "820px",
+      "wideSize": "1280px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "custom": true,
+      "customGradient": true,
+      "palette": [
+        {
+          "slug": "brand",
+          "color": "#F5A302",
+          "name": "Brand Amber"
+        },
+        {
+          "slug": "brand-ink",
+          "color": "#111418",
+          "name": "Ink"
+        },
+        {
+          "slug": "brand-steel",
+          "color": "#2B3440",
+          "name": "Steel"
+        },
+        {
+          "slug": "surface",
+          "color": "#FFFFFF",
+          "name": "Surface"
+        },
+        {
+          "slug": "surface-muted",
+          "color": "#F4F6F8",
+          "name": "Surface Muted"
+        },
+        {
+          "slug": "line",
+          "color": "#E4E8EC",
+          "name": "Line"
+        },
+        {
+          "slug": "success",
+          "color": "#1B9E59",
+          "name": "In Stock Green"
+        },
+        {
+          "slug": "danger",
+          "color": "#D33A2C",
+          "name": "Sale Red"
+        },
+        {
+          "slug": "text",
+          "color": "#1A1D21",
+          "name": "Text"
+        },
+        {
+          "slug": "text-muted",
+          "color": "#5A636C",
+          "name": "Text Muted"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "customFontSize": true,
+      "fontFamilies": [
+        {
+          "slug": "sans",
+          "name": "Inter",
+          "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        },
+        {
+          "slug": "display",
+          "name": "Sora",
+          "fontFamily": "Sora, Inter, sans-serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "sm",
+          "size": "0.875rem",
+          "name": "Small"
+        },
+        {
+          "slug": "base",
+          "size": "1rem",
+          "name": "Base"
+        },
+        {
+          "slug": "lg",
+          "size": "1.25rem",
+          "name": "Large"
+        },
+        {
+          "slug": "xl",
+          "size": "clamp(1.5rem,1.2rem + 1.4vw,2rem)",
+          "name": "XL"
+        },
+        {
+          "slug": "2xl",
+          "size": "clamp(2rem,1.5rem + 2.4vw,3.25rem)",
+          "name": "Display"
+        }
+      ]
+    },
+    "spacing": {
+      "customSpacingSize": true,
+      "units": [
+        "px",
+        "em",
+        "rem",
+        "vw",
+        "%"
+      ],
+      "spacingScale": {
+        "steps": 8
+      }
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--surface)",
+      "text": "var(--wp--preset--color--text)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--sans)",
+      "lineHeight": "1.6",
+      "fontSize": "var(--wp--preset--font-size--base)"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--brand-ink)"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--wp--preset--color--brand)"
+          }
+        }
+      },
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "700",
+          "lineHeight": "1.15"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--brand)",
+          "text": "var(--wp--preset--color--brand-ink)"
+        },
+        "border": {
+          "radius": "10px"
+        },
+        "typography": {
+          "fontWeight": "600"
+        }
+      }
+    }
+  }
+}
